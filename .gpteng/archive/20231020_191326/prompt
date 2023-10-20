@@ -1,0 +1,15 @@
+A simple utility for strength training: calculating 1 rep max and several N-rep max values based on weight and reps input.
+
+Application is going to be hosted on github pages, so no backend and no build steps:
+pure html, css and js, zero dependencies, no frameworks, no libraries, prefereably only 3 files, but not a requirement.
+
+An interface is going to be clean, lightweight and simple:
+
+A header is always present on the page, it says [ 100 ]kg 1RM, where 100 is a weight input field and kg is a weight unit selector.
+One row is also always present, it says [ XXX ]kg [10]RM, where XXX is a calculated weight and 10 is a reps input field.
+There is also ability to add more rows, so user can calculate several N-rep max values at once.
+Each field can be changed, and all other fields are recalculated automatically.
+
+Interface is mobile-first, but operates well on desktops too.
+
+All user preferences, values, etc are stored in local storage, so they are preserved between sessions.
