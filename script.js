@@ -21,25 +21,53 @@ function updateRows() {
     });
 }
 
+
 function renderUI() {
-    const body = document.getElementsByTagName('body')[0];
-    body.innerHTML = `
+    const content = document.getElementById('content')
+    content.innerHTML = `
     <header>
-        <input id="weight" type="number" value="${state.oneRepMaxWeight}" onchange="onOneRepMaxChange(event);">
-        <select id="weight-unit" onchange="onWeightUnitChange(event)">
-            <option value="kg" ${state.weightUnit === 'kg' ? 'selected' : ''}>kg</option>
-            <option value="lb" ${state.weightUnit === 'lb' ? 'selected' : ''}>lb</option>
-        </select> 1<abbr title="Rep Max">RM</abbr>
-        <a href='#' onclick="onCalc1RM(); return false;">🧮</a>
+        <label id="one-rep-max-label" for="one-rep-max-input">One-Rep Max</label>
+        <row>
+            <input 
+                id="one-rep-max-input" 
+                type="number" 
+                value="${state.oneRepMaxWeight}" 
+                onchange="onOneRepMaxChange(event);"
+                style="--len: ${String(state.oneRepMaxWeight).length};"
+            >
+            <select id="weight-unit" onchange="onWeightUnitChange(event)">
+                <option value="kg" ${state.weightUnit === 'kg' ? 'selected' : ''}>kg</option>
+                <option value="lb" ${state.weightUnit === 'lb' ? 'selected' : ''}>lb</option>
+            </select>
+            (<a href='#' onclick="onCalc1RM(); return false;">🧮</a>)
+        </row>
     </header>
-    <div id="rows">
+
+    <div class="line-with-text">
+        <span>gives us</span>
+    </div>
+
+    <column id="rows">
         ${state.rows.map((row, i) => `
         <div class="row">
-            <input class="reps" value="${row.reps}" onchange="onRepCountChange(event)" data-index="${i}" type="number"><abbr title="Rep Max">RM</abbr>
-            is ${row.weight} ${state.weightUnit}
-            ${state.rows.length > 1 ? '<button class="remove-row">-</button>' : ''}
+            <input 
+                class="reps"
+                value="${row.reps}"
+                onchange="onRepCountChange(event)"
+                data-index="${i}"
+                style="--len: ${String(row.reps).length};"
+                type="number" 
+            >
+            Rep Max of <span class="monospaced">${row.weight}</span> ${state.weightUnit}
+            ${
+        state.rows.length > 1
+            ? `<a onclick="removeRow(event); return false;" data-index="${i}" class="remove-row">
+                    ⛔
+               </a>`
+            : ''
+    }
         </div>`).join('')}
-    </div>
+    </column>
     <button id="add-row" onclick="addRow()">Add Row</button>`
 }
 
@@ -83,7 +111,16 @@ function onWeightUnitChange(event) {
 
 function addRow() {
     const reps = 10;
-    state.rows.push({reps});
+    state.rows.push({reps, weight: 0});
+    sortRows();
+    updateRows();
+    renderUI();
+    saveState();
+}
+
+function removeRow(event) {
+    const index = event.target.attributes['data-index'].value;
+    state.rows.splice(index, 1);
     sortRows();
     updateRows();
     renderUI();

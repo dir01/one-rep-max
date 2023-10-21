@@ -1,12 +1,118 @@
-.remove-row {
-    background-color: red;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    padding: 10px;
-    width: 30px;
-    height: 30px;
+body {
+    background-color: #f1f1f1;
+    display: flex;
+    flex-direction: row;
+}
+
+#content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    padding: 2%;
+    font-size: 400%;
+}
+
+#content>header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#content>header>#one-rep-max-label {
+    font-size: 150%;
+    font-weight: bolder;
+    font-family: 'Cinzel', serif;
+    color: lightcoral;
+}
+
+/* Flex container to center-align children */
+.line-with-text {
+    display: flex;
+    align-items: center;
     text-align: center;
-    line-height: 10px;
-    font-size: 20px;
+    align-self: normal;
+    font-family: 'Cedarville Cursive', cursive;
+}
+
+/* Create lines on either side of the text */
+.line-with-text::before,
+.line-with-text::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid black;
+    margin: 0 10px;
+}
+
+/* Style for the text in the middle */
+.line-with-text span {}
+
+
+input, select, option {
+    font-size: inherit;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-bottom: 1px dashed;
+    font-family: monospace;
+}
+
+.monospaced {
+    font-family: monospace;
+}
+
+/* Initial style for the input to make it look like text */
+input[type="number"] {
+    width: calc(1ch * var(--len)); /* Dynamic width based on content */
+    max-width: 100%; /* Ensures the input doesn't overflow its container */
+}
+
+/* Style when the input is focused */
+input[type="number"]:focus {
+    background-color: white;
+    border: 1px solid #ccc;
+    cursor: text;
+}
+
+/* Hide spin buttons in Chrome */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Hide spin buttons in Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+#content>#rows {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#content>#rows>.row {
+    margin: 0.5em 0;
+}
+
+.remove-row {
+    cursor: pointer;
+}
+
+#add-row {
+    cursor: pointer;
+    font-size: 50%;
+    margin-top: 0.5em;
+    padding: 0.5em;
+    background-color: transparent;
+    border: 1px solid lightcoral;
+    border-radius: 10%;
+    color: lightcoral;
+    opacity: 0.5;
+
 }
