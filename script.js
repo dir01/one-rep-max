@@ -33,6 +33,7 @@ function renderUI() {
                 type="number" 
                 value="${state.oneRepMaxWeight}" 
                 onchange="onOneRepMaxChange(event);"
+                onfocus="this.select()"
                 style="--len: ${String(state.oneRepMaxWeight).length};"
             >
             <select id="weight-unit" onchange="onWeightUnitChange(event)">
@@ -54,15 +55,19 @@ function renderUI() {
                 class="reps"
                 value="${row.reps}"
                 onchange="onRepCountChange(event)"
+                onfocus="this.select()"
                 data-index="${i}"
                 style="--len: ${String(row.reps).length};"
                 type="number" 
+                id="row-${i}"
             >
-            Rep Max of <span class="monospaced">${row.weight}</span> ${state.weightUnit}
+            <label for="row-${i}">
+            rep max of <span class="monospaced">${row.weight}</span> ${state.weightUnit}
+            </label>
             ${
         state.rows.length > 1
             ? `<a onclick="removeRow(event); return false;" data-index="${i}" class="remove-row">
-                    ⛔
+                    🗑
                </a>`
             : ''
     }
