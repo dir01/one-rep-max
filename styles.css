@@ -20,6 +20,10 @@ body {
     justify-content: center;
 }
 
+#content>header>row {
+    margin: 0.5em auto;
+}
+
 #content>header>#one-rep-max-label {
     font-size: 150%;
     font-weight: bolder;
@@ -41,12 +45,14 @@ body {
 .line-with-text::after {
     content: '';
     flex: 1;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid dimgray;
     margin: 0 10px;
 }
 
 /* Style for the text in the middle */
-.line-with-text span {}
+.line-with-text span {
+    color: dimgray;
+}
 
 
 input, select, option {
@@ -57,6 +63,7 @@ input, select, option {
     cursor: pointer;
     border-bottom: 1px dashed;
     font-family: monospace;
+    color: inherit;
 }
 
 .monospaced {
@@ -93,10 +100,11 @@ input[type="number"] {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin: 0.5em 0;
 }
 
 #content>#rows>.row {
-    margin: 0.5em 0;
+    margin: 1em 0;
 }
 
 .remove-row {

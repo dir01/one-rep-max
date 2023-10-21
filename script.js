@@ -28,6 +28,7 @@ function renderUI() {
     <header>
         <label id="one-rep-max-label" for="one-rep-max-input">One-Rep Max</label>
         <row>
+            of
             <input 
                 id="one-rep-max-input" 
                 type="number" 
@@ -62,7 +63,7 @@ function renderUI() {
                 id="row-${i}"
             >
             <label for="row-${i}">
-            rep max of <span class="monospaced">${row.weight}</span> ${state.weightUnit}
+            rep max of <b class="monospaced">${row.weight} ${state.weightUnit}</b>
             </label>
             ${
         state.rows.length > 1
@@ -78,7 +79,13 @@ function renderUI() {
 
 function onCalc1RM() {
     const weight = parseFloat(prompt('Enter weight'));
+    if (isNaN(weight)) {
+        return;
+    }
     const reps = parseInt(prompt('Enter reps'));
+    if (isNaN(reps)) {
+        return;
+    }
     state.oneRepMaxWeight = calculateOneRepMax(weight, reps);
     updateRows();
     renderUI();
