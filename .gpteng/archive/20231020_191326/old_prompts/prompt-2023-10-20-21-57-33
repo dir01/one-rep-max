@@ -1,1 +1,0 @@
-A bash script that copies file 'prompt' to 'old_prompts/prompt-YYYY-MM-DD-HH-MM-SS' and then creates a new file called 'prompt'
