@@ -1,6 +1,0 @@
-in script.js, state and UI should be separated: state should be a plain object, and UI should be a function that takes state and returns a DOM tree
-any change should re-calculate the rest of state from the reference of currently changed value
-after that, UI should be re-rendered from the new state and updated in the dom. all event listeners should be removed and re-added
-after that, the new state should be saved to the local storage
-
-Be careful not to include some/dir/ prefix in produced diffs
